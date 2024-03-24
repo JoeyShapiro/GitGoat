@@ -1,0 +1,1 @@
+[usb](https://github.com/rp-rs/rp-hal/blob/main/rp2040-hal/examples/uart.rs)
