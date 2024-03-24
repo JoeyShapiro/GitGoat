@@ -2,3 +2,4 @@
 [serial](shrug)
 
 screen /dev/tty.usbmodemTEST1 9600
+exit with ctrl+d a
