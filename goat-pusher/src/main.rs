@@ -93,7 +93,7 @@ fn main() -> ! {
     let mut serial = SerialPort::new(&usb_bus);
 
     // Create a USB device with a fake VID and PID
-    let mut usb_dev = UsbDeviceBuilder::new(&usb_bus, UsbVidPid(0x16c0, 0x27dd))
+    let mut usb_dev = UsbDeviceBuilder::new(&usb_bus, UsbVidPid(0x8787, 0xc0de)) // 0x16c0, 0x27dd is the VID/PID of PJRC
         .manufacturer("Fake Company")
         .product("Git Goat")
         .serial_number("gitgoat")
@@ -137,14 +137,9 @@ fn main() -> ! {
                     // Send back to the host
                     let mut wr_ptr = &buf[..count];
                     while !wr_ptr.is_empty() {
-                        if wr_ptr[0] == 66 {
-                            match serial.write(&[66_u8, 66_u8, 66_u8]) {
-                                Ok(_len) => {},
-                                // On error, just drop unwritten data.
-                                // One possible error is Err(WouldBlock), meaning the USB
-                                // write buffer is full.
-                                Err(_) => break,
-                            };
+                        // check if it is equal to the ascii G
+                        if wr_ptr[0] == 71 {
+                            let _ = serial.write(b"Git Goat\r\n");
                         }
                         match serial.write(wr_ptr) {
                             Ok(len) => wr_ptr = &wr_ptr[len..],
