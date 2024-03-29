@@ -18,26 +18,10 @@ func main() {
 	ctx := gousb.NewContext()
 	defer ctx.Close()
 
-	// get all devices conencted
-	devices, err := ctx.OpenDevices(func(desc *gousb.DeviceDesc) bool {
-		return true
-	})
-	if err != nil {
-		log.Fatalf("OpenDevices: %v", err)
-	}
-
-	for _, device := range devices {
-		fmt.Println(device.Product())
-		fmt.Printf("%+v\n", device)
-
-		device.Close()
-	}
-	return
-
 	// Open any device with a given VID/PID using a convenience function.
-	dev, err := ctx.OpenDeviceWithVIDPID(0x046d, 0xc526)
+	dev, err := ctx.OpenDeviceWithVIDPID(0x8787, 0xc0de)
 	if err != nil {
-		log.Fatalf("Could not open a device: %v", err)
+		log.Fatalf("Could not open the device: %v", err)
 	}
 	defer dev.Close()
 
@@ -77,6 +61,7 @@ func Actualmain() {
 	router.RunTLS("localhost:8888", "cert.pem", "key.pem")
 }
 
+// github webhook stuff
 func webhook(c *gin.Context) {
 	data, err := io.ReadAll(c.Request.Body)
 	if err != nil {
@@ -102,18 +87,20 @@ func handleHook(event string, data []byte) {
 	}
 }
 
-func handleIssues(data []byte) error {
+func handleIssues(data []byte) (err error) {
 	var issue HookIssue
-	err := json.Unmarshal(data, &issue)
+	err = json.Unmarshal(data, &issue)
 	if err != nil {
-		return err
+		return
 	}
 
 	switch issue.Action {
-	case "opened":
-		fmt.Println("Issue opened")
-	case "reponed", "closed":
+	case "opened", "reponed", "closed":
 		fmt.Printf("\033[1;34m%s\033[0;0m \033[0;31m%s\033[0;0m \"%s\" (\033[1;34m#%d\033[0;m)\n", issue.Sender.Login, issue.Action, issue.Issue.Title, issue.Issue.Number)
+
+		if issue.Action == "opened" {
+			err = pushBlame()
+		}
 	case "labeled":
 		r, g, b := colorHexToRGB(issue.Label.Color)
 		fmt.Printf("\033[1;34m%s\033[0;0m \033[0;31m%s\033[0;0m \"%s\" (\033[1;34m#%d\033[0;m) as \033[38;2;%d;%d;%dm%s\033[0;m\n",
@@ -122,7 +109,7 @@ func handleIssues(data []byte) error {
 		fmt.Printf("Issue Action \"%s\" not implemented\n", issue.Action)
 	}
 
-	return nil
+	return
 }
 
 func colorHexToRGB(hex string) (red int, green int, blue int) {
@@ -164,4 +151,9 @@ type Label struct {
 	Name        string `json:"name"`
 	NodeId      string `json:"node_id"`
 	Url         string `json:"url"`
+}
+
+// blamethrower stuff
+func pushBlame() (err error) {
+	return
 }

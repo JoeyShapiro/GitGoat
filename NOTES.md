@@ -3,4 +3,4 @@
 [go serial](https://pkg.go.dev/go.bug.st/serial)
 
 screen /dev/tty.usbmodemTEST1 9600
-exit with ctrl+d a
+exit with ctrl+a d
