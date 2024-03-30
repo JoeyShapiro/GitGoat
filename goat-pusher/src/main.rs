@@ -139,15 +139,13 @@ fn main() -> ! {
                     while !wr_ptr.is_empty() {
                         // check if it is equal to the ascii B
                         if wr_ptr[0] == 0x42 {
-                            let _ = serial.write(b"G");
+                            match serial.write(b"G") {
+                                Ok(len) => wr_ptr = &wr_ptr[len..],
+                                Err(_) => break,
+                            
+                            };
                         }
-                        match serial.write(wr_ptr) {
-                            Ok(len) => wr_ptr = &wr_ptr[len..],
-                            // On error, just drop unwritten data.
-                            // One possible error is Err(WouldBlock), meaning the USB
-                            // write buffer is full.
-                            Err(_) => break,
-                        };
+                        // TODO else echo to debug
                     }
                 }
             }
