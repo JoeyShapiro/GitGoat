@@ -27,13 +27,19 @@ func webhook(c *gin.Context) {
 }
 
 func handleHook(event string, data []byte) {
+	var err error
+
 	switch event {
 	case "push":
 		fmt.Println("Push event")
 	case "issues":
-		handleIssues(data)
+		err = handleIssues(data)
 	case "pull_request":
 		fmt.Println("Pull request event")
+	}
+
+	if err != nil {
+		fmt.Println(err)
 	}
 }
 
