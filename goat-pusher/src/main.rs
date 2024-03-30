@@ -137,9 +137,9 @@ fn main() -> ! {
                     // Send back to the host
                     let mut wr_ptr = &buf[..count];
                     while !wr_ptr.is_empty() {
-                        // check if it is equal to the ascii G
-                        if wr_ptr[0] == 71 {
-                            let _ = serial.write(b"Git Goat\r\n");
+                        // check if it is equal to the ascii B
+                        if wr_ptr[0] == 0x42 {
+                            let _ = serial.write(b"G");
                         }
                         match serial.write(wr_ptr) {
                             Ok(len) => wr_ptr = &wr_ptr[len..],

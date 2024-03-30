@@ -10,48 +10,11 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/gousb"
+	"go.bug.st/serial"
 )
 
 func main() {
-	// Initialize a new Context.
-	ctx := gousb.NewContext()
-	defer ctx.Close()
-
-	// Open any device with a given VID/PID using a convenience function.
-	dev, err := ctx.OpenDeviceWithVIDPID(0x8787, 0xc0de)
-	if err != nil {
-		log.Fatalf("Could not open the device: %v", err)
-	}
-	defer dev.Close()
-
-	// Claim the default interface using a convenience function.
-	// The default interface is always #0 alt #0 in the currently active
-	// config.
-	intf, done, err := dev.DefaultInterface()
-	if err != nil {
-		log.Fatalf("%s.DefaultInterface(): %v", dev, err)
-	}
-	defer done()
-
-	// Open an OUT endpoint.
-	ep, err := intf.OutEndpoint(7)
-	if err != nil {
-		log.Fatalf("%s.OutEndpoint(7): %v", intf, err)
-	}
-
-	// Generate some data to write.
-	data := make([]byte, 5)
-	for i := range data {
-		data[i] = byte(i)
-	}
-
-	// Write data to the USB device.
-	numBytes, err := ep.Write(data)
-	if numBytes != 5 {
-		log.Fatalf("%s.Write([5]): only %d bytes written, returned error is %v", ep, numBytes, err)
-	}
-	fmt.Println("5 bytes successfully sent to the endpoint")
+	pushBlame()
 }
 
 func Actualmain() {
@@ -155,5 +118,33 @@ type Label struct {
 
 // blamethrower stuff
 func pushBlame() (err error) {
-	return
+	var n int
+	mode := &serial.Mode{
+		BaudRate: 9600,
+	}
+	port, err := serial.Open("/dev/tty.usbmodemgitgoat1", mode)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	buff := make([]byte, 100)
+	_, err = port.Write([]byte("B"))
+	if err != nil {
+		return
+	}
+
+	var data string
+	for {
+		n, err = port.Read(buff)
+		if err != nil {
+			return
+		}
+		data = string(buff[:n])
+		fmt.Printf("%s", data)
+		if data == "G" {
+			break
+		}
+	}
+
+	return nil
 }
