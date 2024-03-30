@@ -5,10 +5,6 @@ import (
 )
 
 func main() {
-	pushBlame()
-}
-
-func Actualmain() {
 	router := gin.Default()
 	router.GET("webhook/events", webhook)
 

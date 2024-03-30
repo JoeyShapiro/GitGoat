@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"go.bug.st/serial"
@@ -33,7 +32,6 @@ func pushBlame() (err error) {
 			return
 		}
 		data = string(buff[:n])
-		fmt.Printf("%s\n", data)
 
 		if data == "G" {
 			break
