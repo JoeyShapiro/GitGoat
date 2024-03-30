@@ -12,8 +12,9 @@
 #![no_std]
 #![no_main]
 
+use embedded_hal::digital::v2::OutputPin;
 // The macro for our start-up function
-use rp_pico::entry;
+use rp_pico::{entry, hal::Clock};
 
 // Ensure we halt the program on panic (if we don't mention this crate it won't
 // be linked)
@@ -28,7 +29,7 @@ use rp_pico::hal::pac;
 use rp_pico::hal;
 
 // USB Device support
-use usb_device::{class_prelude::*, prelude::*};
+use usb_device::prelude::*;
 
 // USB Communications Class Device support
 use usbd_serial::{SerialPort, USB_CLASS_CDC};
@@ -48,6 +49,7 @@ use heapless::String;
 fn main() -> ! {
     // Grab our singleton objects
     let mut pac = pac::Peripherals::take().unwrap();
+    let core = pac::CorePeripherals::take().unwrap();
 
     // Set up the watchdog driver - needed by the clock setup code
     let mut watchdog = hal::Watchdog::new(pac.WATCHDOG);
@@ -68,17 +70,26 @@ fn main() -> ! {
     .unwrap();
 
     let timer = hal::Timer::new(pac.TIMER, &mut pac.RESETS, &clocks);
+    let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
 
-    #[cfg(feature = "rp2040-e5")]
-    {
-        let sio = hal::Sio::new(pac.SIO);
-        let _pins = rp_pico::Pins::new(
-            pac.IO_BANK0,
-            pac.PADS_BANK0,
-            sio.gpio_bank0,
-            &mut pac.RESETS,
-        );
-    }
+    // #[cfg(feature = "rp2040-e5")]
+    // {
+    //     let sio = hal::Sio::new(pac.SIO);
+    //     let _pins = rp_pico::Pins::new(
+    //         pac.IO_BANK0,
+    //         pac.PADS_BANK0,
+    //         sio.gpio_bank0,
+    //         &mut pac.RESETS,
+    //     );
+    // }
+    let sio = hal::Sio::new(pac.SIO);
+    let pins = hal::gpio::Pins::new(
+        pac.IO_BANK0,
+        pac.PADS_BANK0,
+        sio.gpio_bank0,
+        &mut pac.RESETS,
+    );
+    let mut goat_pin = pins.gpio25.into_push_pull_output();
 
     // Set up the USB driver
     let usb_bus = usb_device::bus::UsbBusAllocator::new(hal::usb::UsbBus::new(
@@ -139,10 +150,12 @@ fn main() -> ! {
                     while !wr_ptr.is_empty() {
                         // check if it is equal to the ascii B
                         if wr_ptr[0] == 0x42 {
+                            goat_pin.set_high().unwrap();
+                            delay.delay_ms(100);
+                            goat_pin.set_low().unwrap();
                             match serial.write(b"G") {
                                 Ok(len) => wr_ptr = &wr_ptr[len..],
                                 Err(_) => break,
-                            
                             };
                         }
                         // TODO else echo to debug

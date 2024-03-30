@@ -17,6 +17,7 @@ func pushBlame() (err error) {
 	if err != nil {
 		return
 	}
+	defer port.Close()
 
 	buff := make([]byte, 100)
 	_, err = port.Write([]byte("B"))
