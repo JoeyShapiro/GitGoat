@@ -89,7 +89,7 @@ fn main() -> ! {
         sio.gpio_bank0,
         &mut pac.RESETS,
     );
-    let mut goat_pin = pins.gpio25.into_push_pull_output();
+    let mut goat_pin = pins.gpio1.into_push_pull_output();
 
     // Set up the USB driver
     let usb_bus = usb_device::bus::UsbBusAllocator::new(hal::usb::UsbBus::new(
@@ -151,7 +151,7 @@ fn main() -> ! {
                         // check if it is equal to the ascii B
                         if wr_ptr[0] == 0x42 {
                             goat_pin.set_high().unwrap();
-                            delay.delay_ms(100);
+                            delay.delay_ms(500);
                             goat_pin.set_low().unwrap();
                             match serial.write(b"G") {
                                 Ok(len) => wr_ptr = &wr_ptr[len..],
