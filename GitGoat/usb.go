@@ -13,7 +13,7 @@ func pushBlame() (err error) {
 	mode := &serial.Mode{
 		BaudRate: 9600,
 	}
-	port, err := serial.Open("/dev/tty.usbmodemgitgoat1", mode)
+	port, err := serial.Open(serialDev, mode)
 	if err != nil {
 		return
 	}
