@@ -90,6 +90,7 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
     let mut goat_pin = pins.gpio1.into_push_pull_output();
+    let mut led_pin = pins.gpio25.into_push_pull_output();
 
     // Set up the USB driver
     let usb_bus = usb_device::bus::UsbBusAllocator::new(hal::usb::UsbBus::new(
@@ -145,14 +146,17 @@ fn main() -> ! {
                         b.make_ascii_uppercase();
                     });
 
+                    // dont need wr_ptr or the loop, but it is safer
                     // Send back to the host
                     let mut wr_ptr = &buf[..count];
                     while !wr_ptr.is_empty() {
                         // check if it is equal to the ascii B
                         if wr_ptr[0] == 0x42 {
                             goat_pin.set_high().unwrap();
-                            delay.delay_ms(500);
+                            led_pin.set_high().unwrap();
+                            delay.delay_ms(200);
                             goat_pin.set_low().unwrap();
+                            led_pin.set_low().unwrap();
                             match serial.write(b"G") {
                                 Ok(len) => wr_ptr = &wr_ptr[len..],
                                 Err(_) => break,

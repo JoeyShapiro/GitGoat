@@ -1,0 +1,111 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /webhook/events           --> main.webhook (3 handlers)
+[GIN-debug] Listening and serving HTTPS on localhost:8888
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN] 2024/04/05 - 10:04:15 | 202 |     863.458µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:04:47 | 202 |     154.625µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:05:00 | 202 |      82.791µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:08:56 | 202 |     135.541µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:09:12 | 202 |      62.625µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:09:31 | 202 |        59.5µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:10:35 | 202 |      91.834µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:10:46 | 202 |     108.667µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /webhook/events           --> main.webhook (3 handlers)
+[GIN-debug] Listening and serving HTTPS on localhost:8888
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN] 2024/04/05 - 10:12:37 | 202 |    1.326458ms |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:12:53 | 202 |      188.25µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:13:34 | 202 |     104.708µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:13:59 | 202 |     131.958µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:14:18 | 202 |    1.051458ms |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:14:34 | 202 |      71.958µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:15:50 | 202 |      80.166µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:16:35 | 202 |      95.375µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:16:58 | 202 |      77.833µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:17:24 | 202 |      54.375µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:17:36 | 202 |      82.333µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:19:16 | 202 |       101.5µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:19:37 | 202 |     123.458µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:20:05 | 202 |     104.584µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:20:18 | 202 |     143.916µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:27:04 | 202 |     262.625µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:27:16 | 202 |     150.042µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:27:28 | 202 |      86.416µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:28:28 | 202 |     118.125µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:41:51 | 202 |     321.209µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:42:15 | 202 |     135.167µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 10:42:30 | 202 |     109.416µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:05:02 | 202 |     128.458µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:05:16 | 202 |     118.208µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:05:50 | 202 |      142.75µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:13:00 | 202 |      89.833µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:13:12 | 202 |     115.959µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:16:16 | 202 |     175.084µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:16:38 | 202 |      94.166µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:17:26 | 202 |     216.292µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:18:12 | 202 |     108.417µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:29:04 | 202 |     127.875µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:30:22 | 202 |     149.041µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:30:41 | 202 |      66.917µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:30:57 | 202 |      81.125µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:31:12 | 202 |     234.708µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:32:12 | 202 |      67.583µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:32:31 | 202 |     144.917µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:33:16 | 202 |      99.292µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:33:58 | 202 |     105.584µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:34:11 | 202 |         153µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 11:34:25 | 202 |    1.138292ms |       127.0.0.1 | GET      "/webhook/events"
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /webhook/events           --> main.webhook (3 handlers)
+[GIN-debug] Listening and serving HTTPS on localhost:8888
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN] 2024/04/05 - 15:02:22 | 202 |      1.8795ms |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:02:37 | 202 |     107.959µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:02:41 | 202 |     121.792µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:02:48 | 202 |      86.375µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /webhook/events           --> main.webhook (3 handlers)
+[GIN-debug] Listening and serving HTTPS on localhost:8888
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN] 2024/04/05 - 15:04:46 | 202 |     512.042µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:04:53 | 202 |     243.042µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:06:21 | 202 |     121.541µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:10:09 | 202 |     202.167µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:11:22 | 202 |       92.75µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:14:50 | 202 |     286.041µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:16:27 | 202 |     120.166µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:16:32 | 202 |      86.917µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:17:04 | 202 |      77.584µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:17:08 | 202 |      58.084µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:21:22 | 202 |     131.042µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:21:36 | 202 |     198.416µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:21:48 | 202 |      80.792µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:22:36 | 202 |      81.334µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:25:32 | 202 |       148.5µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:27:52 | 202 |     145.292µs |       127.0.0.1 | GET      "/webhook/events"
+[GIN] 2024/04/05 - 15:29:29 | 202 |        72.5µs |       127.0.0.1 | GET      "/webhook/events"
