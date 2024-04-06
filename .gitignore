@@ -1,3 +1,5 @@
 **/*.pem
 GitGoat/git-goat
 samples
+bin
+*.log
