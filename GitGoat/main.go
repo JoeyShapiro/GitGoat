@@ -21,6 +21,8 @@ func main() {
 	optCert := flag.String("cert", "cert.pem", "path to cert file")
 	optKey := flag.String("key", "key.pem", "path to key file")
 	optSerial := flag.String("serial", "/dev/tty.usbmodemgitgoat1", "path to serial device")
+	optPort := flag.String("port", "8888", "port for the webhook")
+	optNoHttps := flag.Bool("no-https", false, "do not use https")
 	flag.Parse()
 
 	// log to file instead of stdout
@@ -45,5 +47,11 @@ func main() {
 	router := gin.Default()
 	router.GET("webhook/events", webhook)
 
-	router.RunTLS("localhost:8888", *optCert, *optKey)
+	if *optNoHttps {
+		fmt.Println("Running http server on port", *optPort)
+		router.Run("localhost:" + *optPort)
+	} else {
+		fmt.Println("Running https server on port", *optPort)
+		router.RunTLS("localhost:"+*optPort, *optCert, *optKey)
+	}
 }
