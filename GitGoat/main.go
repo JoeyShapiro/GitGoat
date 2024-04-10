@@ -45,13 +45,13 @@ func main() {
 
 	// actually start the server
 	router := gin.Default()
-	router.GET("webhook/events", webhook)
+	router.POST("webhook/events", webhook)
 
 	if *optNoHttps {
 		fmt.Println("Running http server on port", *optPort)
-		router.Run("localhost:" + *optPort)
+		router.Run(":" + *optPort)
 	} else {
 		fmt.Println("Running https server on port", *optPort)
-		router.RunTLS("localhost:"+*optPort, *optCert, *optKey)
+		router.RunTLS(":"+*optPort, *optCert, *optKey)
 	}
 }

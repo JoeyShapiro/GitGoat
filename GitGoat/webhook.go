@@ -51,11 +51,11 @@ func handleIssues(data []byte) (err error) {
 	}
 
 	switch issue.Action {
-	case "created", "reponed", "closed":
+	case "created", "opened", "reoponed", "closed":
 		fmt.Printf("\033[1;34m%s\033[0;0m \033[0;31m%s\033[0;0m \"%s\" (\033[1;34m#%d\033[0;m)\n", issue.Sender.Login, issue.Action, issue.Issue.Title, issue.Issue.Number)
 
 		// TODO i dont like how burried this is
-		if issue.Action == "created" {
+		if issue.Action == "created" || issue.Action == "opened" {
 			err = pushBlame() // <--- This is the call to the USB device
 		}
 	case "labeled":
